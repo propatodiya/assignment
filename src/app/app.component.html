@@ -1,0 +1,116 @@
+<div class="main-section">
+  <div class="section-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <input autocomplete="off" [(ngModel)]="searchText" class="form-control" type="text" placeholder="Search">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-right">
+            <select class="input-sm" class="form-control" [(ngModel)]="sortBy" (change)="sortData()">
+              <option disabled selected value="">Sort By</option>
+              <option value="NAME">Name</option>
+              <option value="DATE">Date</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-4" *ngFor="let x of mockResponse | filter : searchText; let i = index">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-img">
+                <img [src]="x.image">
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <label class="title">{{x.name}}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label class="date">{{x.dateLastEdited | date: 'dd/MM/yyyy'}}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="discription">
+                    <p>{{x.description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-table">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="assignment-table">
+            <div class="assignment-list">
+              <div class="row">
+                <div class="col-12">
+                  <div class="assignment-list-head">
+                    <ul>
+                      <li>
+                        <div class="docx-title"><span>Sr. No</span></div>
+                      </li>
+                      <li>
+                        <div class="docx-title"><span>Name</span> </div>
+                      </li>
+                      <li>
+                        <div class="docx-title"><span>Date</span></div>
+                      </li>
+                      <li>
+                        <div class="docx-title"><span>Description</span></div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="assignment-list-body">
+                    <ul *ngFor="let x of mockResponse| filter : searchText; let i = index">
+                      <li>
+                        <div class="docx-body">
+                          <span>{{i + 1}}</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="docx-body">
+                          <span>{{x.name}}</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="docx-body">
+                          <span>{{x.dateLastEdited | date: 'dd/MM/yyyy'}}</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="docx-body">
+                          <span>{{x.description}}</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
