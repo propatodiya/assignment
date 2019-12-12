@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { LimitPipe } from './pipes/limitto.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilterPipe
+    FilterPipe,
+    LimitPipe
   ],
   imports: [
     BrowserModule,

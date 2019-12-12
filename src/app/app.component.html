@@ -22,7 +22,19 @@
   <div class="section-body">
     <div class="container">
       <div class="row">
-        <div class="col-4" *ngFor="let x of mockResponse | filter : searchText; let i = index">
+        <div class="col-6"></div>
+        <div class="col-6">
+          <div class="pagination">
+            <div class="form-group text-right">
+              <select class="input-sm" class="form-control" [(ngModel)]="gridCount" (change)="displayData()">
+                <option *ngFor="let number of pagination" [value]="number">{{number}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4" *ngFor="let x of mockResponse | filter : searchText | limit : gridCount; let i = index">
           <div class="card">
             <div class="card-header">
               <div class="card-img">

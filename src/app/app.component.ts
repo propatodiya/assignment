@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MockResponseModel } from './model/mock.model';
 import { MockService } from './service/mock.service';
 import { FilterPipe } from './pipes/filter.pipe';
+import { LimitPipe } from './pipes/limitto.pipe';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,6 +12,8 @@ export class AppComponent implements OnInit {
   public mockResponse: Array<MockResponseModel> = [];
   public searchText: string;
   public sortBy = '';
+  public pagination = [10, 25, 50, 100, 'All'];
+  public gridCount = 10 as any;
   constructor(private mockService: MockService) {
   }
 
@@ -34,6 +37,7 @@ export class AppComponent implements OnInit {
       if (this.sortBy) {
         this.sortData();
       }
+      this.displayData();
     }, (error: any) => {
       console.log(error);
     });
@@ -69,15 +73,18 @@ export class AppComponent implements OnInit {
     }
     return comparison;
     }
-    compareByName(a, b) {
-      const dateA = a.name;
-      const dateB = b.name;
-      let comparison = 0;
-      if (dateA > dateB) {
-      comparison = 1;
-      } else if (dateA < dateB) {
-      comparison = -1;
-      }
-      return comparison;
-      }
+  compareByName(a, b) {
+    const dateA = a.name;
+    const dateB = b.name;
+    let comparison = 0;
+    if (dateA > dateB) {
+    comparison = 1;
+    } else if (dateA < dateB) {
+    comparison = -1;
+    }
+    return comparison;
+    }
+  displayData() {
+    new LimitPipe().transform(this.mockResponse, this.gridCount);
+  }
 }
